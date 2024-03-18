@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="style.css"/>
+
+    <script>
+        // Function to validate the form
+        function validateForm() {
+          var username = document.forms["regForm"]["username"].value;
+          var email = document.forms["regForm"]["email"].value;
+          var password = document.forms["regForm"]["password"].value;
+          var confirmPassword = document.forms["regForm"]["confirmPassword"].value;
+      
+          if (username == "" || email == "" || password == "" || confirmPassword == "") {
+            alert("All fields must be filled out");
+            return false;
+          }
+      
+          if (password !== confirmPassword) {
+            alert("Passwords do not match.");
+            return false;
+          }
+      
+          // If validation passes, submit the form data
+          submitFormData(username, email, password);
+          return false; // Prevent form from submitting the traditional way
+        }
+      
+        // Function to submit form data using an API
+        function submitFormData(username, email, password) {
+          // Example API endpoint
+          var apiURL = "https://jsonplaceholder.typicode.com/posts";
+          
+          // Data to be sent in the request
+          var formData = {
+            username: username,
+            email: email,
+            password: password
+          };
+      
+          fetch(apiURL, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formData),
+          })
+          .then(response => response.json())
+          .then(data => {
+            console.log('Success:', data);
+            alert("Registration successful!");
+          })
+          .catch((error) => {
+            console.error('Error:', error);
+            alert("An error occurred during registration.");
+          });
+        }
+      </script>
+
+
+</head>
+<body>
+    <header>
+        <img src="./images//Asset 14@4x.png">
+
+    </header>
+    <nav>
+        <ul>
+            <li>
+                <a href="index.html">Home</a>
+                <a href="menu.html">Menu</a>
+                <a href="signin.html">SignIN</a>
+                <a href="contact.html">Contact Us</a>
+            </li>
+        </ul>
+
+    </nav>
+    <main>
+        <section>
+        <div class="formElement">
+            <div>
+         <video width="300" height="300" controls>
+            <source src="./images/production_id_5101165 (2160p).mp4" type="video/mp4">
+         </video>  
+         </div>
+         <div id="form">
+        <h2>Registration Form</h2>
+<form name="regForm" onsubmit="return validateForm()">
+  <label for="username">Username:</label><br>
+  <input type="text" id="username" name="username"><br>
+  <label for="email">Email:</label><br>
+  <input type="text" id="email" name="email"><br>
+  <label for="password">Password:</label><br>
+  <input type="password" id="password" name="password"><br>
+  <label for="confirmPassword">Confirm Password:</label><br>
+  <input type="password" id="confirmPassword" name="confirmPassword"><br><br>
+  <input type="submit" value="Register">
+</form>
+</div>
+    </div>
+    </section>
+          
+    </main>
+
+    
+</body>
+</html>
