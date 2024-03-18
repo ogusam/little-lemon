@@ -46,6 +46,9 @@ li a{
     text-decoration: none;
     padding: 2rem;
 }
+li a:hover{
+    background-color: white;
+}
 
 footer > div > img {
     height: 20%;
